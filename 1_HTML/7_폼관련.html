@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>폼 관련 태그</h1>
+    <p>
+        form태그는 html에서 사용자가 입력한 값을 서버(자바)로 넘기는 역할을 함<br/>
+        form태그 내에 input태그에 작성한 데이터 -> 서버<br/>
+        - action 속성 : 폼에 입력된 데이터들을 전송할 주소 입력<br/>
+        - method 속성 : 전송 방식 지정 (get : 쿼리스트링 노출 / post : 쿼리스트링 숨겨짐)
+    </p>
+    <form action="1_글자관련.html" method="post"> <!--method 생략되면 기본값은 get-->
+        <label>검색할 내용 :</label><!--?뒤에 있는 거 쿼리 스트링-->
+        <input type="text" name="search" placeholder="검색어를 입력해주세요"/> <!--name은 파라미터 무조건 있어야 됨, 데이터는 어디에(파라미터) 담을지 정해야됨-->
+        <input type="submit" value="검색"/> <!--action이라는 속성이 생략되면 기본적으로 현재 주소를 갖는다-->
+    </form>
+    <p>submit버튼을 눌렀을 때 method에 지정한 방식으로 action에 지정한 경로에 input태그의 값 전달</p>
+
+    <form>
+        <fieldset>
+            <legend>필수 입력 항목</legend>
+            <label>이름 : </label><input type="text"/><br/>
+            <label>아이디 : </label><input type="text"/><br/>
+            <label>비밀번호 : </label><input type="text"/><br/>
+        </fieldset>
+        <fieldset>
+            <legend>선택 입력 항목</legend>
+            <label>취미 : </label><input type="text"/><br/>
+            <label>혈액형 : </label><input type="text"/><br/>
+            <label>별자리 : </label><input type="text"/>
+        </fieldset>
+    </form>
+
+    <h2>text와 관련된 input태그 속성값들</h2>
+    <form>
+        <h3>type="hidden"</h3>
+        <input type="hidden" value="khacademy" name="hiddenVal"/>
+
+        <h3>type="text"</h3>
+        <label>아이디 : </label>
+        <input type="text" name="userId" size="20" placeholder="아이디를 입력하세요" maxlength="15"
+                autofocus required value="user01" readonly/>
+
+        <h3>type="password"</h3>
+        <label>비밀번호 : </label>
+        <input type="password" name="userPwd" placeholder="비밀번호를 입력하세요"/>
+
+        <br/>
+        <h3>type="button", type="submit", type="reset"</h3>
+        <input type="button" value="버튼"/> <!--value값을 안 넣으면 누르는 버튼만 생김-->
+        <input type="submit" value="전송"/>
+        <input type="reset" value="취소"/>
+
+        <p>button태그를 이용해서도 버튼 만들 수 있음</p> <!--자기가 속해 있는 form태그를 제출함-->
+        <button>button</button> <!--form태그 안에 있으면 자동으로 submit역할, 밖에 있으면 그냥 button역할-->
+        <button type="button">real button</button> <!-- 이러면 그냥 button-->
+        <button type="submit">submit</button>
+        <button type="reset">reset</button>
+    </form>
+
+    <h2>라디오 버튼과 체크박스</h2>
+    <form>
+        <h3>type="radio"</h3> <!--radio : 여러 개 중 하나 선택-->
+        
+        <label>성별 : </label> <!--같은 그룹으로 묶어주기-->
+        <input type="radio" id="male" name="gender" value="M" checked/> <!--value값을 설정해줘야 뭔지 앎-->
+        <label for="male">남자</label>
+        <input type="radio" id="female" name="gender" value="F"/> 
+        <label for="female">여자</label> <!--글자 눌러도 버튼 눌리게 할려면 id랑 같게 해야됨-->
+
+        <br/>
+
+        <label>통신사 : </label>
+        <input type="radio" id="skt" name="phone" value="skt" checked/><label for="skt">SKT</label> <!--checked는 미리 선택되어 있음-->
+        <input type="radio" id="kt" name="phone" value="kt"/><label for="kt">KT</label>
+        <input type="radio" id="lg" name="phone" value="lg"/><label for="lg">U+</label>
+
+        <br/>
+
+        <h3>type="checkbox"</h3> <!--checkbox : 여러 개 중복 선택 가능-->
+        <label>취미 : </label>
+
+        <input type="checkbox" id="baseball" name="sports" value="야구" checked/>
+        <label for="baseball">야구</label>
+        <input type="checkbox" id="basketball" name="sports" value="농구" checked/>
+        <label for="basketball">농구</label>
+        <input type="checkbox" id="football" name="sports" value="축구"/>
+        <label for="football">축구</label>
+
+        <br/><br/>
+
+        <input type="submit" value="전송"/>
+    </form>
+
+    <h2>file</h2>
+    <form>
+        <h3>type="file"</h3>
+        <label>파일 선택 :</label>
+        <input type="file" name="uploadFile" accept=".jpg, .png, .mp4" multiple/> <!--accept : 그것만 허용함, multiple : 여러 개 선택 가능-->
+        <button>파일 전송</button>
+    </form>
+
+    <h2>HTML5 태그</h2>
+    <form>
+        <h3>type="search", type="url", type="email", type="tel"</h3>
+
+        <label>검색 : </label><input type="search" name="searchText"/>
+        <br/>
+        <label>홈페이지 : </label><input type="url" name="homepage" value="http://"/> <!--url : http:// 들어가야됨-->
+        <br/>
+        <label>이메일 : </label><input type="email" name="email"/> <!--email : @ 들어가야됨-->
+        <br/>
+        <label>전화번호 : </label><input type="tel" name="phone"/>
+
+        <br/><br/>
+        <input type="submit" value="전송"/>
+
+    </form>
+
+    <h2>숫자와 관련된 input태그 속성들</h2>
+    <form>
+        <h3>type="number"</h3>
+        <label>수량 : </label>
+        <input type="number" name="amount" min="0" max="100" step="5" value="0"/> <!--step : 몇 씩 올라감-->
+
+        <h3>type="range"</h3>
+        <label>점수 : </label>
+        <input type="range" name="point" min="0" max="100" step="10"/>
+
+        <br/><br/>
+        <input type="submit" value="전송"/>
+    </form>
+
+    <h2>날짜, 시간과 관련된 input태그 속성들</h2>
+    <form>
+        <h3>type="date", type="month", type="week", type="time", type="datetime-local"</h3>
+        <label>date : </label><input type="date" name="date"/><br/>
+        <label>month : </label><input type="month" name="month"/><br/>
+        <label>week : </label><input type="week" name="week"/><br/>
+        <label>time : </label><input type="time" name="time"/><br/>
+        <label>datetime-local : </label><input type="datetime-local" name="datetime-local"/><br/>
+        <br/><br/>
+        <input type="submit" value="전송"/>
+    </form>
+
+    <h2>select태그와 option태그</h2>
+    <form>
+        <label>국적 : </label>
+        <select name="nation" size="3" multiple> <!--size : 처음 몇 개 보이는지-->
+            <option value="ko">한국</option> <!--option안에 있는 걸 보고 value로 생각함-->
+            <option value="ch" selected>중국</option>
+            <option value="jp"selected>일본</option>
+            <option value="etc">기타</option>
+        </select>
+        <br/><br/>
+        <input type="submit" value="전송"/>
+    </form>
+
+    <h2>datalist</h2> <!--이거 다시쓰기-->
+    <form>
+        <label>과목 : </label><input type="text" name="subject" list="subList"/> <!--datalist : 자동완성 느낌-->
+        <datalist id="subList">
+            <option value="java">자바</option>
+            <option value="db">디비</option>
+            <option value="dbModeling">디비모델링</option>
+            <option value="jdbc">제이디비씨</option>
+            <option value="html">html</option>
+        </datalist>
+        <button>전송</button>
+    </form>
+
+    <h2>textarea</h2> <!--여러 줄 입력 가능, 자동으로 아래로 내려감, 스크롤바도 나옴,사이즈 조절 가능-->
+    <form> <!--style="resize: none : 사이즈 조절 불가능-->
+        <textarea cols="30" rows="5" name="textarea" placeholder="내용을 입력해주세요" 
+                    style="resize: none">여러 줄 작성할 수 있어요!</textarea> <!--textarea는 value 쓰는 거 아님, 사이에 적으셈-->
+        <br/><br/>
+        <input type="submit" value="전송"/>
+    </form>
+</body>
+</html>

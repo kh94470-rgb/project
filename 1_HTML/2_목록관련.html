@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록 관련 태그들</title>
+</head>
+<body>
+    <!--순서 없는 목록 태그-->
+    <b2>순서 없는 목록 태그</b2>
+    <ul>
+        <li>HTML5
+            <ul>
+                <li>글자 관련
+                    <ul>
+                        <li>제목 태그</li>
+                        <li>
+                            줄바꿈과 구분줄
+                            <ul>
+                                <li>br</li>
+                                <li>hr</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>목록 관련</li>
+            </ul>
+        </li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ul>
+    <p>ul, 순서 없는 목록의 불릿기호는 들여쓰면 알아서 변함, CSS를 통해 불릿기호 변경 가능 </p> <!--단락(문단)을 구분하는 태그-->
+    
+    <br/>
+
+    <!--순서 있는 목록 태그-->
+    <h2>순서 있는 목록 태그</h2>
+    <ol>
+        <li>
+            HTML5
+            <ol>
+                <li>글자관련</li>
+                <li>목록관련</li>
+            </ol>
+        </li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+    <p>순서 있는 목록 태그의 숫자는 속성을 이용하여 변경할 수 있으면 기본 값은 숫자로 되어있고 1부터 시작</p>
+
+    <h3>속성 변경 연습</h3>
+    <h4>영문 소문자로 표기</h4>
+    <ol type="a"> <!--a라고만 써야지 소문자로 됨-->
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+    <h4>영문 대문자로 표기</h4>
+    <ol type="A">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+    <h4>로마 숫자 소문자로 표기</h4>
+    <ol type="i">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+    <h4>로마 숫자 대문자로 표기</h4>
+    <ol type="I">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+
+    <h4>시작 값 변경하기</h4>
+    <ol start="5">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+
+    <h4>숫자 및 시작 값 변경 : iii, iv, v, vi</h4>
+    <ol type="i" start="3">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+
+    <h4>역순으로 항목 번호 표시</h4>
+    <ol reversed type="A" start="6">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+        
+    <!--설명 목록 태그-->
+    <h2>설명 목록 태그</h2>
+    <dl>
+        <dt>이곳은 목록의 제목을 적는 곳입니다.</dt>
+        <dd>이곳은 목록에 대한 설명을 적는 곳입니다.</dd>
+        <dd>여러 줄을 작성할 수도 있습니다.</dd>
+        <dt>또 다른 목록의 제목을 적어 새로운 목록을 만들 수 있습니다.</dt>
+        <dd>새로운 목록에 대한 설명도 추가로 달 수 있으며</dd>
+        <dd>여기 역시도 여러 줄을 작성할 수 있습니다.</dd>
+        <dd>목록 별로 설명이 들어가는 행 개수를 다르게 적을 수 있습니다.</dd>
+    </dl>
+
+    <h1>React&Spring 활용 풀스택 웹 개발자 양성과정</h1>
+    <h2>담당 강사:박신우</h2>
+    <p>이메일:rosemary4110@naver.com</p>
+    <hr/>
+    <ul>
+        <li>프로그래밍 언어
+            <ul>
+                <li><s>Java</s></li>
+            </ul>
+        </li>
+        <li>데이터베이스
+            <ul>
+                <li><s>Oracle</s></li>
+                <li><s>JDBC</s></li>
+            </ul>
+            
+        </li>
+        <li>화면 구현
+            <ol>
+                <li><mark>HTML5</mark></li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>jQuery</li>
+            </ol>
+        </li>
+        <li>서버 개발 기술
+            <ol type="i">
+                <li>JSP</li>
+                <li>Servlet</li>
+                <li>Ajax</li>
+            </ol>
+        </li>
+        <li>프레임워크
+            <ol type="a">
+                <li>MyBatis</li>
+                <li><strong>Spring</strong></li>
+            </ol>
+        </li>
+    </ul>
+
+
+    
+</body>
+</html>

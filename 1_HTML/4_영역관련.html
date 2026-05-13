@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>영역 관련 태그</h1>
+    <h2>div와 span</h2>
+    <h3>div</h3>
+    <div style="border: 1px solid black; width: 100px; height: 100px;">첫 번쨰 영역</div> <!-- 또 다른 속성이 올 수도 있어서 ;붙이기-->
+    <div style="border: 1px solid black; width: 100px; height: 100px;">두 번째 영역</div> <!-- 블록 요소는 크기 지정 가능-->
+    <div style="border: 1px solid black; width: 100px; height: 100px;">세 번째 영역</div>
+    <h3>span</h3>
+    <span style="border: 1px solid black; width: 100px; height: 100px;">첫 번째 영역</span> <!-- 인라인 요소는 크기 지정 불가능-->
+    <span style="border: 1px solid black; width: 100px; height: 100px;">두 번째 영역</span>
+    <span style="border: 1px solid black; width: 100px; height: 100px;">세 번째 영역</span>
+
+    <h2>시맨틱(semantic) 태그</h2>
+    <p>
+        컴퓨터는 단순 문장이나 위치, 모양만으로는 내용을 이해하기 힘드므로
+        컴퓨터가 각 문장에 대한 의미를 이해할 수 있도록 요소를 사용하여 명확하게 나타내기 위함<br/>
+        이전에는 div에 id를 집어넣어서 div들을 구분했어도 실질적인 의미를 갖진 못했는데
+        HTML5로 넘어오면서 div이면서 거기게 의미까지 포함된 시맨틱 태그가 등장함
+    </p>
+    <header>
+        body안에 사용하며 여러 번 사용 가능
+        웹 문서에서 머리말 영역을 나타날 때 사용
+        제목, 제목 설명, 문장 등을 나타내는 요소 포함
+    </header>
+    <nav>
+        navigation, 웹 문서에서 다른 웹 문서나 혹은 문서 내 다른 부분으로 이동하는 부분을 나타내고자 할 때 사용
+    </nav>
+    <aside>
+        웹 문서의 광고나 링크 모음과 같은 부가적인 정보를 구분하기 위해 사용
+    </aside>
+    <section>
+        비슷한 그룹이나 절 또는 문서를 묶기 위해 사용
+        <article>
+            웹 문서에서 주요 내용을 가진 본문을 나타날 때 사용
+            실제로 나타내고자 하는 내용을 가지고 있으므로 기계에 의해 중요한 부분으로 인식
+        </article>
+        <article>
+            여러 개의 article이 있을 수도 있음
+        </article>
+    </section>
+    <footer>웹 문서의 저자 정보, 저작권 정보, 이용 조건 등을 나타내기 위해 사용</footer>
+
+    <hr/>
+
+    <iframe width="854" height="480" src="https://www.youtube.com/embed/gbpZ3lCd50g"></iframe>
+    <iframe width="900" height="480" src="https://www.kh-academy.co.kr"></iframe>
+    <iframe width="900" height="480" src="https://www.naver.com"></iframe>
+    <iframe width="900" height="480" src="2_목록관련.html"></iframe>
+</body>
+</html>

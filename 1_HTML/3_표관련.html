@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        thead{background: blue;}
+        tbody{background: purple;}
+        tfoot{background: aliceblue;}
+    </style>
+</head>
+<body>
+    <h1>기본적인 표 만들기</h1>
+    
+    <table border="">
+        <tr>
+            <th>브라우저명</th>
+            <th>제조사</th>
+            <th>홈페이지</th>
+        </tr>
+        <tr>
+            <td>익스플로러</td>
+            <td>MS</td>
+            <td>https://www.microsoft.com</td>
+        </tr>
+        <tr>
+            <td>크롬</td>
+            <td>google</td>
+            <td>https://www.google.com</td>
+        </tr>
+        <tr>
+            <td>사파리</td>
+            <td>애플</td>
+            <td>https://www.apple.com</td>
+        </tr>
+        <tr>
+            <td>파이어폭스</td>
+            <td>Mozila</td>
+            <td>https://www.mozilla.org</td>
+        </tr>
+        <caption><b>웹 브라우저의 종류</b></caption>
+    </table>
+    <figure>
+        <figcaption>figure를 이용해서 테이블 또는 이미지의 설명에 주로 사용</figcaption>
+        <figcaption>설명 내용을 여러 줄로 표기 가능</figcaption>
+    </figure>
+
+    <h1>표의 행과 열 합치기</h1>
+    <h3>회원 정보</h3>
+    <table border="">
+        <tr>
+            <td rowspan="2" colspan="2" width="130px" height="150px">사진</td> <!-- width : 너비-->
+            <td width="80px">이름</td> <!-- heigth : 높이-->
+            <td width="200px"></td>
+        </tr>
+        <tr>
+            <td>연락처</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td width="70px" height="50px">주소</td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td height="100px">자기소개</td>
+            <td colspan="3"></td>
+        </tr>
+
+    </table>
+
+    <h1>테이블 구조 설정</h1>
+    <table border="">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>강건강</td>
+                <td>20</td>
+                <td>서울시 강남구 역삼동</td>
+            </tr>
+            <tr>
+                <td>남나눔</td>
+                <td>17</td>
+                <td>서울시 노원구 하계동</td>
+            </tr>
+            <tr>
+                <td>도대담</td>
+                <td>34</td>
+                <td>서울시 중구 남대문로</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">총 인원</td>
+                <td>3명</td>
+            </tr>
+        </tfoot>
+   </table>
+   <table border="">
+       <caption>메뉴주문</caption>
+           <tr>
+                <th colspan="10">SWFF(Software fast food)</th>
+           </tr>
+       <tr>
+           <th colspan="3">메인 메뉴</th>
+           <td rowspan="8" width="20px"></td>
+           <th colspan="3">서브 메뉴</th>
+           <td rowspan="4" width="20px"></td>
+           <th colspan="2">음료 메뉴</th>
+       </tr>
+       <tr>
+            <td rowspan="4">햄버거</td>
+            <td>치킨 버거</td>
+            <td>6500</td>
+            <td rowspan="3">스파게티</td>
+            <td>토마토 스파게티</td>
+            <td>1000</td>
+            <td>사이다</td>
+            <td>1000</td>
+       </tr>
+       <tr>
+            <td>불고기 버거</td>
+            <td>6000</td>
+            <td>크림 스파게티</td>
+            <td>4000</td>
+            <td>콜라</td>
+            <td>1000</td>
+       </tr>
+       <tr>
+            <td>새우 버거</td>
+            <td>7500</td>
+            <td>로제 스파게티</td>
+            <td>4500</td>
+            <td>주스</td>
+            <td>1500</td>
+       </tr>
+       <tr>
+            <td>채소 버거</td>
+            <td>5000</td>
+            <th rowspan="3" colspan="6">KH정보교육원점 T.02-000-0000</th>
+       </tr>
+       <tr>
+            <td rowspan="2">치킨</td>
+            <td>후라이드</td>
+            <td>10000</td>
+       </tr>
+       <tr>
+            <td>양념</td>
+            <td>11000</td>
+        </tr>
+
+   </table>
+   
+    
+
+</body>
+</html>
