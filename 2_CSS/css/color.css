@@ -1,0 +1,44 @@
+/* body{background-color: darkcyan;} */
+/* body{background-color: #008B8B;} */
+body{background-color: rgb(0, 139, 139);}
+#div-bg{background-color: white; width: 50%;}
+
+.clip-test{
+    background-color: white; margin: 30px; padding: 20px; width: 20%;
+    float: left; border: 5px dashed black; /*dashed : 점선*/
+}
+
+#clip1{background-clip: border-box;}
+#clip2{background-clip: padding-box;}
+#clip3{background-clip: content-box;}
+
+#bg-img{
+    border: 1px solid black; width: 70%; height: 600px;
+    background-image: url("../sample/image/bgsample.PNG");
+
+    background-repeat: repeat;
+    background-repeat: repeat-x;
+    background-repeat: repeat-y;
+    background-repeat: no-repeat;
+
+    background-size: auto;
+    background-size: contain;
+    background-size: cover;
+    background-size: 150px 100px;
+    background-size: 80% 80%; /*div의 크기에서*/
+
+    background-position: left top; /*기본값*/
+    background-position: right top;
+    background-position: center top;
+    background-position: left bottom;
+    background-position: right bottom;
+    background-position: center bottom;
+    background-position: left center;
+    background-position: right center;
+    background-position: center center;
+    background-position: 30px 50px;
+    background-position: 50% 50%;
+
+    background-attachment: scroll;
+    background-attachment: fixed;
+}

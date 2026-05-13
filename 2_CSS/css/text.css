@@ -1,0 +1,85 @@
+#ff1{font-family: "궁서체";}
+#ff2{font-family: "굴림체";}
+#ff3{font-family: "없는글꼴", "메롱글꼴", "아싸글꼴", "바탕체", "맑은고딕";} /*여러 개 쓰는 이유는 없을 수도 있어서 있는 거 맨 처음 거 갖고 옴*/
+#web-font{font-family: "Dancing Script", cursive;}
+
+#size{font-size: 30px;}
+
+#fw1{font-weight: bold;}
+#fw2{font-weight: lighter;}
+#fw3{font-weight: 900;}
+
+#fv{font-variant: small-caps;}
+
+#fs1{font-style: italic;}
+#fs2{font-style: oblique;}
+
+#f1{font: 30px/100px "궁서체";}
+#f2{font: italic bold 20px/20px "고딕체";}
+
+#c-name{color: red;}
+#c-16{color: #ff0000;} /* 16진수는 #붙여주기*/
+#c-rgb{color: rgb(255, 0, 0);}
+#c-rgba{color: rgba(255, 0, 0 , 0.3);} /* a는 투명도 값이 작아질수록 투명도는 커짐*/
+
+#td1{text-decoration: none;}
+#td2{text-decoration: underline;}
+#td3{text-decoration: line-through;}
+#td4{text-decoration: overline;}
+
+#tt1{text-transform: none;}
+#tt2{text-transform: capitalize;}
+#tt3{text-transform: uppercase;}
+#tt4{text-transform: lowercase;}
+
+#bg{margin: 30px; padding: 50px; background: black;} /*밖에 안에*/
+.shadow{font-size: 100px; font: 900;}
+#ts1{color: orangered; text-shadow: 0px 1px 20px #fff;} /*좌우, 상하, 번짐 정도, 그림자 색깔*/
+#ts2{color: aqua; text-shadow: 20px 10px 15px #fff;}
+#ts3{color: mintcream;text-shadow: -40px -40px 15px #4f76d1;}
+#ts4{text-shadow: 0px 0px 4px #ccc, 
+                    0px -5px 4px #ff3, 
+                    2px -10px 6px #fd3, 
+                    -2px -15px 11px #f80,
+                    2px -19px 18px #f20;}
+
+#space1{white-space: normal;} /*공백 처리 다시보기*/
+#space2{white-space: nowrap;} /*공백은 처리하면서 한 줄로 처리*/
+#space3{white-space: pre;} /*pre화 함 공백을 다시 만듬*/
+#space4{white-space: pre-line;} /*공백 처리 줄바꿈 유지*/
+#space5{white-space: pre-wrap;} /*pre화 줄바꿈 유지*/
+
+#spacing1{letter-spacing: 10px;}
+#spacing2{word-spacing: 10px;}
+
+#d1{direction: ltr;} /*왼쪽에서 오른쪽으로 읽는 방향*/
+#d2{direction: rtl;} /*오른쪽에서 왼쪽으로 읽는 방향*/
+
+#ta1{text-align: left;}
+#ta2{text-align: right;}
+#ta3{text-align: center;}
+#ta4{text-align: justify;} /*양쪽 정렬은 양쪽 다 끝에 맞춤*/
+
+#ti{text-indent: 100px;}
+
+#lh1{line-height: normal;}
+#lh2{line-height: 50px;}
+
+.overflow-class{background: beige; width: 500px;}
+.overflow-class>p{white-space: nowrap; overflow: hidden;}
+#to1{text-overflow: clip;}
+#to2{text-overflow: ellipsis;} /*...*/
+
+#default-bullet{list-style-type: disc;} /*까만 원 기본*/
+#circle-bullet{list-style-type: circle;} /*빈 원*/
+#square-bullet{list-style-type: square;} /*까만 네모*/
+#none-bullet{list-style-type: none;} /*불렛 없앰*/
+
+#default-number{list-style-type: decimal;}
+#zero-number{list-style-type: decimal-leading-zero;}
+#lower-rome-number{list-style-type: lower-roman;}
+#upper-rome-number{list-style-type: upper-roman;}
+#lower-alpha{list-style-type: lower-alpha;}
+#upper-alpha{list-style-type: upper-alpha;}
+
+#image-bullet{list-style-image: url("../sample/image/iconsample.PNG");}
