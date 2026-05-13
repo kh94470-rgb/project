@@ -1,0 +1,225 @@
+0<!DOCTYPE html>
+<html>
+2head>
+3   <script src="../js/jquery-4.0.0.min.js"></script>
+4   <style>
+        .highlight_0{background: red;}
+        .highlight_1{background: orange;}
+        .highlight_2{background: yellow;}
+        .highlight_3{background: green;}
+        .highlight_4{background: blue;}
+    </style>
+    </style>
+    </style>
+    </style>
+    </style>
+    </style>
+</head>
+<body>
+    <h1>객체 조작</h1>
+    <h2>기본 설정</h2>
+    <h3>each()</h3>
+    <p>
+        배열을 관리하는 for in문과 비슷한 메소드로 객체나 배열의 요소 검색</br>
+        <b>$.each(object, function(index, item){});</b></br>
+        <b>$(선택자).each(function(index, item){});</b><br/>
+        index : 배열의 인덱스 또는 객체의 키<br/>
+        item : 해당 인덱스나 키가 가진 값
+    </p>
+    <div id="jqUrlDiv"></div>
+    <script>
+        const arr = [
+            {name: '네이버', link:'http://www.naver.com'},
+            {name: '구글', link:'http://www.google.com'},
+            {name: 'w3c', link:'http://www.w3c.com'},
+            {name: 'w3school', link:'http://www.w3schools.com'}
+        ];
+
+        $(() => {
+            let output = '';
+            $.each(arr, (index, item) => {
+                // console.log(index);
+                // console.log(item);
+                // output += '<a href=' + item.link + '><h4>' + item.name + '</h4></a>';
+                output += `<a href=${item.link}><h4>${item.name}</h4></a>`
+            })
+            $('#jqUrlDiv').html(output); // html() == innerHTML
+        });
+    </script>
+
+    <div id="jqItemDiv">
+        <h4>item-0</h4>
+        <h4>item-1</h4>
+        <h4>item-2</h4>
+        <h4>item-3</h4>
+        <h4>item-4</h4>
+    </div>
+    <script>
+        $(() => {
+            $('#jqItemDiv>h4').each((index, item) => {
+                // console.log(index);
+                // console.log(item);
+                // $(item).attr('class', 'highlight_'+index);
+                // $(item).addClass('highlight_'+index);
+                item.className = 'highlight_'+index;
+            });
+        })
+    </script>
+
+    <h3>map()</h3>
+    <p>자바스크립트에서 제공하는 배열의 요소 검사하는 함수 = each()</p>
+    <div id="jsUrlDiv"></div>
+    <script>
+        window.addEventListener('load', () => {
+            let output = '';
+            arr.map((element, index, array) => {
+                // console.log(element);
+                // console.log(index);
+                // console.log(array);
+                output += `<h4><a href=${element.link}>${element.name}</a></h4>`;
+            });
+            document.querySelector('#jsUrlDiv').innerHTML = output;
+        })
+    </script>
+
+    <div id="jsItemDiv">
+        <h4>item-0</h4>
+        <h4>item-1</h4>
+        <h4>item-2</h4>
+        <h4>item-3</h4>
+        <h4>item-4</h4>
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            const h4s = document.getElementById('jsItemDiv').children;
+            // console.log(h4s); //HTMLCollection : 배열 형태로 되어있는 객체
+            const h4Arr = [...h4s];
+            h4Arr.map((elem, idx, arr) => {
+                // console.log(elem);
+                // console.log(idx);
+                // console.log(arr);
+                elem.className = 'highligt_' + idx;
+
+            })
+        })
+    </script>
+
+    <h2>객체 생성 및 제거</h2>
+    <h3>요소 추가</h3>
+    <ul id="jqNames">
+        <li id="nam">남나눔</li>
+        <li id="ryu">류라라</li>
+        <li id="mun">문미미</li>
+        <li id="song">송성실</li>
+    </ul>
+    <button onclick="addElement1();">요소 추가</button>
+    <script>
+        const addElement1 = () => {
+            // $('#jqNames').append('<li id="yoon">윤예의</li>');
+            // $('<li id="yoon">윤예의</li>').appendTo('#jqNames');
+
+            // $('#jqNames').prepend('<li id="kang">강건강</li>'); //다시 듣기
+            // $('<li id="kang">강건강</li>').prependTo('#jqNames');
+
+            // $('#song').before("<li id='park'>박보배</li>");
+            // $("<li id='park'>박보배</li>").insertBefore('#song');
+
+            // $('#nam').after('<li id="do">도대담</li>');
+            // $('<li id="do">도대담</li>').insertAfter('#nam');
+        }
+    </script>
+
+    <ul id="jsNames">
+        <li id="doh">도대담</li>
+        <li id="yoon">윤예의</li>
+        <li id="cha">차청춘</li>
+    </ul>
+    <button onclick="addElement2();">요소 추가</button>
+    <script>
+        const addElement2 = () => {
+            const parentNode = document.querySelector('#jsNames');
+
+            //부모노드.appendChild(삽입노드)
+            //부모노드.append(삽입노드1, 삽입노드2, ...)
+            const newAppend = document.createElement('li');
+            const nweAppendText = document.createTextNode('콩쿠키');
+            newAppend.appendChild(nweAppendText);
+            parentNode.appendChild(newAppend);
+
+            // 부모노드.prepend(삽입노드1, 삽입노드2, ...)
+            const newPrepend1 = document.createElement('li');
+            newPrepend1.innerText = '남나눔';
+            parentNode.prepend(newPrepend1);
+
+            const newPrepend2 = document.createElement('li');
+            newPrepend2.innerText = '강건강';
+            const newPrepend3 = document.createElement('li');
+            newPrepend3.innerText = '홍하하';
+            parentNode.prepend(newPrepend2, newPrepend3);
+
+            //부모노드.insertBefore(추가노드, 기준노드)
+            const standardNode = document.querySelector('#yoon');
+            const newBefore = document.createElement('li');
+            const newBeforeText = document.createTextNode('송성실');
+            newBefore.appendChild(newBeforeText);
+            parentNode.insertBefore(newBefore, standardNode);
+        }
+    </script>
+
+    <h3>요소 삭제</h3>
+    <div id="colorDiv" class="colorDiv">
+        <ul id="colorUl">
+            <li>pink</li>
+            <li>skyblue</li>
+            <li>yellow</li>
+            <li>yellowgreen</li>
+        </ul>
+    </div>
+    <button onclick="return1();">되돌리기1</button>
+
+    <div id="colorDiv2" class="colorDiv">
+        <ul id="colorUl2">
+            <li>pink</li>
+            <li>skyblue</li>
+            <li>yellow</li>
+            <li>yellowgreen</li>
+        </ul>
+    </div>
+    <button onclick="return2();">되돌리기2</button>
+
+    <div id="colorDiv3" class="colorDiv">
+        <ul id="colorUl3">
+            <li>pink</li>
+            <li>skyblue</li>
+            <li>yellow</li>
+            <li>yellowgreen</li>
+        </ul>
+    </div>
+    <button onclick="return3();">되돌리기3</button>
+    <script>
+        $(() => {
+            $('.colorDiv').find('li').mouseover(function(){
+                const color = $(this).text();
+                $(this).css({'background':color, 'color':'white'});
+            }).mouseout((e) => {
+                $(e.target).css({'background':'white', 'color':'black'});
+
+            });
+
+            removeVal = $('#colorUl').remove();
+            detachVal = $('#colorUl2').detach();
+            emptyVal = $('#colorUl3').empty();
+            console.log(removeVal);
+            console.log(detachVal);
+            console.log(emptyVal);
+        });
+
+        const return1 = () => $('#colorDiv').append(removeVal) // 데이터 형태 유지, 이벤트 제거
+
+        const return2 = () => $('#colorDiv2').append(detachVal) // 데이터 형태 유지, 이벤트 유지
+
+        const return3 = () => $('#colorDiv3').append(emptyVal) //살리기 불가능
+    </script>
+    
+</body>
+</html>

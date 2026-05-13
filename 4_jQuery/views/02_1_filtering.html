@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>객체 탐색</h1>
+    <h2>필터링 메소드</h2>
+    <h4 class="test">test-a</h4>
+    <h4 class="test">test-b</h4>
+    <h4 class="test">test-c</h4>
+    <h4 class="test">test-d</h4>
+    <h4>test-e</h4>
+    <h4 class="test">test-f</h4>
+    <script>
+        $(() => {
+            // $('h4:even').css('background', 'black'); //선택자
+            $('h4').filter(":even").css({'background':'tomato', 'color':'white'}); // filter() 메소드 이용
+            $('h4').filter(':odd').css({'background':'yellowgreen', 'color':'white'});
+            $('h4').first().css('font-size', '30px');
+            console.log($('h4').last().text());
+            $('h4').last().text($('h4').last().text() + " : 마지막 요소");
+            // text() == innerText
+            $('h4').eq(3).text($('h4').eq(3).text() + " : eq()메소드로 필터링");
+            $('h4').not('.test').css({'background':'yellow', 'color':'black'});
+        })
+    </script>
+</body>
+</html>

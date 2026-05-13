@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script> -->
+    <script src="../js/jquery-4.0.0.min.js"></script>
+</head>
+<body>
+    <h1>jQuery</h1>
+    <p>존 레식에 의해 개발된 경량 JavaScript 라이브러리로 JavaScript코드를 손쉽게 구현하기 위해 개발</p>
+
+    <h2>jQuery 개요</h2>
+    <h3>jQuery 장점</h3>
+    <ol>
+        <li>DOM과 관련된 처리를 쉽게 구현할 수 있음</li>
+        <li>Ajax통신, 이벤트 처리 등을 폭넓게 지원</li>
+        <li>별도의 플러그인을 통해 차트, 슬라이드쇼, 테이블 등 간단히 구현 가능</li>
+    </ol>
+
+    <h3>jQuery 연결</h3>
+    <ol id="ol-connect">
+        <li>jQuery 홈페이지에서 js파일을 다운로드 받아 연결</li>
+        <li>CDN(Content Delivery Network)을 통한 연결</li>
+    </ol>
+    <script>
+        // id가 ol-connect인 요소에 배경색을 beige색 입히기
+        // document.getElementById('ol-connect').style.backgroundColor = 'beige';
+        $('#ol-connect').css('background', 'beige');
+    </script>
+
+    <h3>$(document).ready()</h3>
+    <p id="p-ready">
+        페이지를 로드한 후 ready메소드 실행 = JavaScript의 window.onload<br/>
+        하지만 자바스크립트의 window.onload 속성은 복수 개 설정 시 마지막에 쓴 것으로 덮어써지지만<br/>
+        jQuery는 복수 개 설정하면 모두 연달아 실행
+    </p>
+    <script>
+        // jQuery(document).ready(() => {
+        //     $('#p-ready').css('background-color', 'pink');
+        // });
+        window.addEventListener('load', () => {
+            document.getElementById('p-ready').style.backgroundColor = 'pink';
+        });
+
+        // $(document).ready(() => {
+        //     $('#p-ready').css('border', '3px solid red');
+        // });
+        window.addEventListener('load', () => {
+            document.getElementById('p-ready').style.border = '3px solid red';
+        });
+
+        // jQuery(() => {
+        //     $('#p-ready').css('font-weight', 'bold');
+        // });
+        window.addEventListener('load', () => {
+             $('#p-ready').css('font-weight', 'bold');
+        });
+        // JavaScript 코드랑 jQuery코드랑 섞어서 쓸 수 있음
+        $(() => {
+            // $('#p-ready').css('font-style', 'italic');
+            document.getElementById('p-ready').style.fontStyle = 'italic';
+        });
+    </script>
+
+    <h2>선택자와 메소드</h2>
+    <p>선택자를 지정하고 메소드를 통해 jQuery적용</p>
+    <div>
+        <ul>
+            <li>치킨</li>
+            <li>불고기 피자</li>
+            <li>치즈 피자</li>
+            <li>파인애플 피자</li>
+            <li>콤비네이션 피자</li>
+        </ul>
+        <h3>KH피자#</h3>
+    </div>
+    <label>이름 : </label><input type="text" id="name" name="name" class="order"/><br/>
+    <label>주문 비밀번호 : </label><input type="password" id="pwd" name="pwd" class="order important"/><br/>
+    <label>핸드폰번호 : </label>
+    <input type="number" name="number1"/>-<input type="number" name="number2"/>-<input type="number" name="number3"/><br/>
+    <label>주소 : </label><input type="text" id="addr" name="addr" class="order" size="80"/><br/>
+    <label>치킨 주문 : </label><input type="text" id="chicken" class="order" list="chickenList"/>
+    <datalist id="chickenList">
+        <option value="original">후라이드 치킨</option>
+        <option value="saurce">양념 치킨</option>
+        <option value="half">후라이드 반 앙념 반</option>
+    </datalist><br/>
+    <label>피자 주문 : </label>
+    <input type="checkbox" name="pizza">불고기 피자 &nbsp;&nbsp; <input type="checkbox" name="pizza">치즈 피자 &nbsp;&nbsp;
+    <input type="checkbox" name="pizza">파인애플 피자 &nbsp;&nbsp; <input type="checkbox" name="pizza">콤비네이션 피자<br/>
+    <label>일회용품 : </label>
+    <input type="radio" name="product" id="need" checked>필요함&nbsp;&nbsp;
+    <input type="radio" name="product" id="noneed">필요하지 않음<br/>
+    <label>파일 : </label><input type="file"><br/>
+    <label>이미지 : </label><input type="image" src="../images/flower1.PNG" height="200px"/><br/><br/>
+    <input type="button" value="클릭"/> <input type="submit" value="제출"/> <input type="reset" value="리셋"/><br/>
+    <input type="text" disabled/> <input type="button" value="비활성화" disabled/>
+    <br/><br/>
+    <table>
+        <tr><th>이름</th><th>혈액형</th><th>고향</th></tr>
+        <tr><td>강건강</td><td>B형</td><td>광주</td></tr>
+        <tr><td><a>남나눔</a></td><td>AB형</td><td>부산</td></tr>
+        <tr><td><a href="#">도대담</a></td><td>A형</td><td>서울</td></tr>
+        <tr><td>류라라</td><td>B형</td><td>천안</td></tr>
+        <tr><td>문미미</td><td>O형</td><td>서울</td></tr>
+        <tr><td>박보배</td><td>A형</td><td>춘천</td></tr>
+        <tr><td colspan="2">총원</td><td>6</td></tr>
+    </table>
+
+    <script>
+        $(() => {
+            //$('*').css('color', 'white');
+            // css() : 문서 객체의 스타일을 검사하거나 변경할 때 사용, 여러 속성 설정 가능
+            // console.log($('*').css('color'));
+
+            $('label').css('font-weight', 'bold');
+            // document.getElementsByTagName('label').style.fontWeight = 'bold';
+            // const labels = document.getElementsByTagName('label');
+            // for(const i in labels){
+            //     labels[i].style.fontWeight = 'bold';
+            // }
+            // for(const i of labels){
+            //     i.style.fontWeight = 'bold';
+            // }
+            $('label, p').css('background', 'beige'); 
+
+            console.log($('#name'));                        // 리턴이 jQuery 형식이면 거기에 맞춰서 잘 써야 됨
+            console.log(document.getElementById('name'));   // 리턴이 javascript 형식이어도
+            $('#name').attr('placeholder', '이름을 입력하세요');
+            //attr() : 문서 객체의 특정 속성 값을 알아내거나 속성을 추가/변경할 때 사용
+            console.log($('#name').attr('placeholder'));
+            console.log($('name').attr('size'));
+            $('#name').attr('size', '100');
+            $('#name').removeAttr('size'); // 객체 속성 제거, 메소드 체이닝 가능
+
+            $('.order').css('background', 'rgba(0, 0, 255, 0.1)');
+            // const orders = document.getElementsByClassName('order');
+            // console.log(orders);
+            // for(const i in orders){
+            //     orders[i].style.backgroundColor = 'rgba(0, 0, 255, 0.1)';
+            // }
+            $('.order.important').css('background', 'tomato');
+
+            $('div>h3').css('color', 'brown');
+            $('div li').css('color', 'orange');
+
+            $('input[size]').css('background', 'yellowgreen');
+            $('input[type=number]').attr('placeholder', '번호필수입력');
+            $('input[class~=important]').val(123456);
+            // val() : value에 값을 설정하거나 value 값 확인할 때 사용
+            $('input[name*=d]').css('background', 'pink');
+            $('input[name^=n]').css('background', 'skyblue');
+            $('input[class$=der]').css('background', 'rgba(0, 100, 0, 0.1)');
+
+            $('input:text').css('background', 'white');
+            $('input:password').css('background', 'gold');
+            // $('input:checkbox').prop('checked', true).css('width', '30px').css('height', '30px');
+            $('input:checkbox').prop('checked', true).css({'width':'30px', 'height':'30px'}); //여러 개는 객체 이용
+            // prop() : 속성 값의 여부를 true/false로 리턴
+            $('input:radio').css({'width':'30px','height':'30px'});
+            $('input:file').css({'background':'blue', 'color':'white'});
+            $('input:image').mouseenter(function(){
+                console.log($(this));
+                $(this).attr('src', '../images/river1.PNG'); //다시 듣기
+            }).mouseout(function(){
+                $(this).attr('src', '../images/flower1.PNG');
+            });
+            // $('input:button').attr('value', '왕버튼');
+            $('input:button').val('왕버튼').css({'width':'200px', 'height':'200px'});
+            $('input:submit').css({'background':'orange', 'color':'white'});
+            $('input:reset').css('background', 'yellow');
+            $('input:disabled').css('background', 'powderblue');
+
+            $('tr:odd').css('background', 'yellow');
+            $('tr:even').css('background', 'lightgray');
+            $('tr:first').css({'background':'black', 'color':'white'});
+            $('tr:last').css('background', 'orangered').css('color', 'white');
+            
+            $('tr:nth-child(2n)').css('background', 'yellowgreen');
+            $('td:nth-child(3)').css('background', 'orange');
+            $('tr:eq(7)').css({'background':'black', 'color':'gray'});
+            $('tr:gt(2)').css('color', 'white'); // 012이상
+            $('tr:lt(7)').css('font-size', '30px'); //7이하
+            $('td:contains("B형")').css('color', 'red');
+            $('td:has(a)').css('font-style', 'italic');
+            $('td:has(a[href])').css('background', 'cyan');
+
+            $('td:not(:contains("문미미"))').css('color', 'olive');
+        });
+    </script>
+
+</body>
+</html>

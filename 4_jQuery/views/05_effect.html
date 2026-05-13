@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-4.0.0.min.js"></script>
+    <style>
+        .menu{background: yellowgreen; width: 300px; height: 30px; border: 1px solid green;
+        border-radius: 10px; text-align: center; cursor: pointer;
+    }
+    .contents{border: 1px solid lightgray; width: 300px; height: 200px; display: none;}    
+    </style>
+</head>
+<body>
+    <h1>효과</h1>
+    <h2>show()와 hide()</h2>
+    <button id="show">보이기</button>
+    <button id="hide">숨기기</button>
+    <button id="toggle">토글이</button>
+    <br/>
+    <img id="river" src="../images/river1.PNG"/>
+    <script>
+        $(() => {
+            $('#show').click(() => {
+                // $('#river').css('display', 'inline');
+                $('#river').show(100);
+            })
+
+            $('#hide').click(() => {
+                // $('#river').css('display', 'none');
+                $('#river').hide(500);
+            })
+
+            $('#toggle').click(() => {
+                $('#river').toggle(3000);
+            })
+        })
+    </script> 
+
+    <h2>slideDown()과 slideUp()</h2>
+    <div class="menu">첫 번째 메뉴</div>
+    <p class="contents">내용1</p>
+    <div class="menu">두 번째 메뉴</div>
+    <p class="contents">내용2</p>
+    <div class="menu">세 번째 메뉴</div>
+    <p class="contents">내용3</p>
+    <div class="menu">네 번째 메뉴</div>
+    <p class="contents">내용1</p>
+    <div class="menu">다섯 번째 메뉴</div>
+    <p class="contents">내용5</p>
+    <script>
+        $(() => {
+            $('.menu').click(function(){
+                // console.log($(this).next().css('display'))
+                // if($(this).next().css('display') == 'none'){
+                //     $(this).next().slideDown(800);
+                // } else{
+                //     $(this).next().slideUp(800);
+                // }
+                $(this).next().slideToggle(4000);
+            })
+        })
+    </script>
+
+    <h2>fadeIn()과 fadeOut()</h2>
+    <button id="fadeIn">fadeIn</button>
+    <button id="fadeOut">fadeOut</button>
+    <button id="fadeToggle">fadeToggle</button>
+    <br/>
+    <img id="tour" src="../images/tour4.jpg"/>
+    <script>
+        $(() => {
+            $('#fadeIn').click(() => {
+                $('#tour').fadeIn(5000);
+            })
+            $('#fadeOut').click(() => {
+                $('#tour').fadeOut(3000);
+            })
+            $('#fadeToggle').click(() => {
+                $('#tour').fadeToggle();
+            })
+
+            $('#tour').hover(e => {
+                $(e.target).fadeTo(700, 0.4); //0에 가까워지면 옅어짐
+            }, e => {
+                $(e.target).fadeTo(700, 1);
+            });
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-4.0.0.min.js"></script>
+    <style>
+        .wrap *{
+            border: 1px solid lightgray; display: block; padding: 5px; margin: 15px;}
+            .type{width: 500px;}
+    </style>
+</head>
+<body>
+    <h1>객체 탐색</h1>
+    <h2>탐색 메소드</h2>
+    <h3>Ancestors 메소드</h3>
+    <div class="wrap">
+        <div class="type">div (great-grandparent)
+            <ul>ul (grandparent)
+                <li>li (direct parent)
+                    <span>span</span>
+                </li>
+            </ul>
+        </div>
+        <div class="type">div (grandparent)
+            <p>p (direct parent)
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+    <script>
+        $(() => {
+            $('span').parent().css({'color':'red', 'border':'2px solid red'}); // parent : 선택된 요소의 바로 상위의 요소를 선택
+            $('span').parents('ul').css({'color':'blue', 'border':'2px solid blue'}); 
+            // parents : 선택된 요소의 모든 상위 요소,하지만 매개인자가 들어가면 매개인자와 일치하는 부모만 들어감
+            $('span').parentsUntil('div').css('background', 'beige'); // parentsUntill : 그 요소 전까지
+
+            const spans = document.getElementsByTagName('span'); // javascript는 parents나 parentsUntil은 없음
+            for(const span of spans){
+                span.parentElement.style.border = '2px solid green';
+            }
+        })
+    </script>
+    
+</body>
+</html>

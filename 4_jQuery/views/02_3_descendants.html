@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-4.0.0.min.js"></script>
+    <style>
+        .wrap *{
+            border: 1px solid lightgray; display: block; padding: 5px; margin: 15px;}
+            .type{width: 500px;}
+    </style>
+</head>
+<body>
+    <h1>객체 탐색</h1>
+    <h2>탐색 메소드</h2>
+    <h3>Descendants 메소드</h3>
+    <div class="wrap">
+        <div class="type">div (great-grandparent)
+            <ul>ul (grandparent)
+                <li>li (direct parent)
+                    <span>span1</span>
+                </li>
+                <li>li (direct parent)
+                    <span>span2</span>
+                </li>
+            </ul>
+        </div>
+        <div class="type">div (grandparent)
+            <p>p (direct parent)
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+    <script>
+        $(() => {
+            const style1 = {'color':'red', 'border':'2px solid red'};
+            const style2 = {'color':'blue', 'border':'2px solid blue'};
+            const style3 = {'color':'green', 'border':'2px solid green'};
+            const style4 = {'color':'pink', 'border':'2px solid pink'};
+            const style5 = {'color':'orange', 'border':'2px solid orange'};
+
+            // $('.wrap').children().css(style1); //children : 밑에 있는 요소들 3:35 다시듣기
+            // $('.wrap').children().children().css(style2);
+            // //              div.type    ul/p
+            // $('.wrap').children().children('ul').css(style3); 
+            // $('.wrap').find('span').css(style4); // find : 자식 + 후손 다 포함해서 매개인자 찾기
+            
+            // // span1과 span2한테만 주황색 입히기
+            // $('li').children().css(style5);
+            // $('.wrap').children().children().children('li').children().css(style5);
+            // $('.wrap').find('li').children().css(style5);
+            
+            // $('.wrap').children().css(style1);
+            const wrap = document.getElementsByClassName('wrap')[0];
+            // console.log(wrap);
+            const wrapChildren = wrap.children; // javascript에서는 children
+            // console.log(wrapChildren);
+            for(const child of wrapChildren){
+                child.style.border = '2px solid red'; // div .type
+
+                // console.log(child.children[0]);
+                const childChildren = child.children[0];
+                // $('.wrap').children().children().css(style2);
+                childChildren.style.border = '2px solid blue';
+            }
+            
+
+            //console.log(wrap.children);
+            //console.log(wrap.children.children); // X! children이 collection인데 children 해버리니깐 안 나옴
+
+
+            // $('.wrap').find('span').css(style4); 
+            const spans = wrap.querySelectorAll('span'); // querySelectorAll : wrap안에 span 메소드 다 찾아줘
+            //querySelect : 이것도 다시 듣기
+            // console.log(spans);
+            for(const span of spans){
+                span.style.border = '2px solid pink';
+            }
+        })
+    </script>
+    
+</body>
+</html>
