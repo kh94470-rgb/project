@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jumbotron Template for Bootstrap</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand" href="#">Navbar</a>
+
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link disabled" href="#">Disabled</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+		            <div class="dropdown-menu" aria-labelledby="dropdown01">
+		            	<a class="dropdown-item" href="#">Action</a>
+		            	<a class="dropdown-item" href="#">Another action</a>
+		            	<a class="dropdown-item" href="#">Something else here</a>
+		            </div>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
+	
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-3">Hello, JSP world!</h1>
+			<p>
+				JSP(Java Server Page)란, Java코드(<% %> 또는 <%= %>)가 들어가있는 HTML코드를 말하며
+				서블릿의 복잡함을 좀 더 간단하게 사용할 수 있다.<br/>
+				서블릿보다 쉽고 작성하기 빠른 것이 가장 큰 장점이며 디자인 부분(html)과 로직 부분(java)을
+				분리시킬 수 있다.<br/>
+				프로그래머가 직접 코딩한 서블릿보다 최적화된 서블릿으로 생성시켜주므로 효율적인 코드가
+				만들어지며 JavaBean의 사용이 쉽다.<br/>
+				웹 애플리케이션 상에서 변수의 사용 가능한 범위 설정이 쉽다.
+			</p>
+			<p>
+				<a class="btn btn-primary btn-lg" href="#" role="button">Learn
+					more &raquo;</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="container">
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="col-md-4">
+				<h2>JSP</h2>
+				<p>
+					스크립팅 원소(scripting element)는 JSP페이지에서 자바코드를 직접 기술할 수
+					있게 하는 기능이다. 선언문은 '<%! 자바코드 %>'로 표현하고 멤버변수와 메소드를
+					선언하기 위해 사용한다. 스크립트릿은 '<% %>'로 표현하고 JSP에서 자바코드를
+					사용하기 위해 사용한다. 표현식은 '<%= %>'로 표현하고 자바에서 작성한 값을
+					출력하기 위해 사용한다. JSP에서 주석은 '<%-- --%>'로 표현한다.
+				</p>
+				<p>
+					<a class="btn btn-secondary" href="jsp/sum.jsp" role="button">View
+						details &raquo;</a>
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h2>EL</h2>
+				<p>
+					EL(Expression Language)는 '<%= %>' 또는 'out.print()'와 마찬가지로
+					값을 출력하고자 할 때 사용한다.
+					사용 문법은 '${ }'이며 EL 안에서 간단한 연산도 가능하다.
+					데이터를 화면에 출력하는 것 뿐만 아니라 커스텀 액션 태그에서의 조건절이나
+					표현절로 사용되기도 한다.
+					만일 없는 데이터에 대해 표현하게 된다면 null이 아닌 비어있는 값을 출력한다.
+				</p>
+				<p>
+					<a class="btn btn-secondary" href="el/elIndex.jsp" role="button">View
+						details &raquo;</a>
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h2>액션 태그</h2>
+				<p>
+					액션태그는 표준 액션 태그와 커스텀 액션 태그로 나뉜다.
+					표준 액션 태그는 JSP에서 기본으로 제공하여 JSP페이지 내에서 바로 사용 가능하고
+					태그 앞에 접두어로 'jsp:'이 붙는다.
+					커스텀 액션 태그를 사용하기 위해선 별도의 라이브러리가 필요하며 접두어는 사용자가 지정한대로 쓸 수 있다.
+					cor, format, functions 등 로직에 필요한 태그들로 구성되어있다.
+				</p>
+				<p>
+					<a class="btn btn-secondary" href="action/actionIndex.jsp" role="button">View
+						details &raquo;</a>
+				</p>
+			</div>
+		</div>
+
+		<hr>
+
+	</div>
+
+	<footer class="container">
+		<p>&copy; Company 2017-2018</p>
+	</footer>
+</body>
+</html>
