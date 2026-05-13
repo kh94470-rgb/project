@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="empMapper">
+<!-- 	<select id="login" parameterType="employee.model.vo.Employee" resultType="employee.model.vo.Employee"> -->
+	<select id="login" parameterType="employee.model.vo.Employee" resultMap="empResultSet">
+		select * 
+		from v_selectemp 
+		where empno=#{empNO} and pwd=#{pwd} and status = 'Y'
+	</select>
+	<resultMap type="employee.model.vo.Employee" id="empResultSet">
+		<id property="empNO" column="EMPNO"/> 
+<!-- 		<result property="pwd" column="PWD"/> -->
+		<result property="empName" column="ENAME"/>
+<!-- 		<result property="job" column="JOB"/> -->
+		<result property="mgrNo" column="MGR_NO"/>
+<!-- 		<result property="mgr" column="MGR"/> -->
+<!-- 		<result property="hireDate" column="HIREDATE"/> -->
+<!-- 		<result property="sal" column="SAL"/> -->
+<!-- 		<result property="comm" column="COMM"/> -->
+<!-- 		<result property="deptNo" column="DEPTNO"/> -->
+		<result property="dept" column="DNAME"/>
+		<result property="isAdmin" column="IS_ADMIN"/>
+<!-- 		<result property="status" column="STATUS"/> -->
+	</resultMap>
+	
+	<select id="selectAll" resultMap="empResultSet">
+		select * from v_selectemp
+	</select>
+	
+	<insert id="insertEmployee" parameterType="employee.model.vo.Employee" >
+		insert into emp values(#{empNO}, #{empName}, #{job}, #{mgrNo}, sysdate, #{sal}, #{comm}, #{deptNo}, default, #{isAdmin}, default)
+		
+	</insert>
+	
+	<update id="updateEmployee" parameterType="employee.model.vo.Employee">
+		update emp 
+		set pwd=#{pwd}, ename=#{empName}, job=#{job}, sal=#{sal}, comm=#{comm}, deptno=#{deptNo}  
+		where empno = #{empNO}
+	</update>
+	
+	<select id="checkEmpNo" parameterType="_int" resultType="_int">
+		select count(*) from emp where empno = #{id}
+	</select>
+	
+	<update id="updateState" parameterType="map">
+		update emp set ${col} = #{val} where empno = #{id}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

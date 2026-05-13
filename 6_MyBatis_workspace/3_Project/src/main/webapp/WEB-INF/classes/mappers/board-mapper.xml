@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+	<select id="getListCount" resultType="_int">
+		select count(*) from board where status = 'Y'
+	</select>
+
+	<select id="selectBoardList" resultMap="boardResultSet">
+		select board_no, title, content, writer as empno, ename as writer, count, 
+				create_date, update_date, is_notice, board.status 
+		from board 
+			 join emp on (empno = writer)
+		where board.status = 'Y'
+		order by board_no desc
+	</select>
+	<resultMap type="board.model.vo.Board" id="boardResultSet">
+		<id column="board_no" property="boardNo"/>
+		<result column="create_date" property="createDate"/>
+		<result column="UPDATE_DATE" property="updateDate"/>
+		<result column="IS_NOTICE" property="isNotice"/>
+	</resultMap>
+	
+	<insert id="insertBoard" parameterType="board.model.vo.Board">
+		insert into board
+		values(seq_board.nextval, #{title}, #{content}, #{empNo}, default, default, default, #{isNotice}, default )
+	</insert>
+	
+	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
+		select board_no, title, content, writer as empno, ename as writer, count, 
+				create_date, update_date, is_notice, board.status 
+		from board 
+			 join emp on (empno = writer) 
+		where board.status = 'Y' and board_no = #{bId} 
+	</select>
+	
+	<update id="updateCount" parameterType="_int">
+		update board
+		set count = count+1
+		where board_no = #{bId}
+	</update>
+	
+	<select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
+		select reply_no, content, writer as empno, ename as writer, create_date, update_date, ref_board, reply.status
+		from reply
+			join emp on(writer = empno)
+		where reply.status = 'Y' and ref_board = #{bId}
+	</select>
+	
+	<resultMap type="board.model.vo.Reply" id="replyResultSet">
+		<id column="reply_no" property="replyNo"/>
+		<result column="create_date" property="createDate"/>
+		<result column="updateDate" property="update_date"/>
+		<result column="ref_board" property="refBoard"/>
+	</resultMap>
+	
+	<update id="updateBoard" parameterType="board.model.vo.Board">
+		update board
+		set title=#{title}, content=#{content}, update_date=sysdate, is_notice=#{isNotice}
+		where board_no = #{boardNo}
+	</update>
+	
+	<update id="deleteBoard" parameterType="_int">
+		update board
+		set status = 'N'
+		where board_no = #{bId}
+	</update>
+	
+	<select id="searchListCount" parameterType="map" resultType="_int">
+		select count(*)
+		from board
+			 join emp on (writer = empno)
+		where board.status = 'Y'
+		<if test="condition == 'writer'">
+			and ename = #{value}
+		</if>
+		<if test="condition == 'title'">
+			and title like '%' || #{value} || '%'
+		</if>
+		<if test="condition == 'content'">
+			and content like '%' || #{value} || '%'
+		</if>
+		<if test="condition != 'writer' and condition != 'content' and condition != 'title'">
+			and (ename = #{value} or title like '%' || #{value} || '%' or content like '%' || #{value} || '%')
+		</if>
+			
+	</select>
+	
+	<select id="selectSearchList" parameterType="map" resultMap="boardResultSet">
+		select board_no, title, content, writer as empno, ename as writer, count,
+				create_date, update_date, is_notice, board.status
+		from board
+			 join emp on(writer = empno)
+		where board.status = 'Y'
+		<choose>
+			<when test="condition == 'writer'">
+				and ename = #{value}
+			</when>
+			<when test="condition == 'title' or condition == 'content'">
+				and ${condition} like '%${value}%'
+			</when>
+			<otherwise>
+				and (ename = #{value} or title like '%${value}%' or content like '%${value}%')
+			</otherwise>
+		</choose>
+		order by board_no desc
+	</select>
+	
+	<insert id="insertReply" parameterType="board.model.vo.Reply">
+		insert into reply
+		values(seq_reply.nextval, #{content}, #{empNo}, default, default, #{refBoard}, default)
+		 
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper> 

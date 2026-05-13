@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 순서 지켜주기
+	The content of element type "configuration" must match 
+	 "(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,
+	 	reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?)".
+ -->
+ 	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+
+	<!-- DB에 연결할 설정에 대한 정보 선언
+			default : 연결 설정을 여러 개 생성하여 아이디로 구분하고 기본으로 연결할 설정 정보 설정 
+	-->
+	<environments default="development">
+	
+	
+		<!--  Database 연결할 설정 정보 -->
+		<environment id="development">
+			<!-- 
+				트랜잭션을 누가 관리 할 것인가에 대한 설정
+					JDBC 	 : JDBC가 커밋과 롤백을 직접 처리 = 수동 commit
+					MANANGED : 트랜잭션에 대해 직접적인 영향을 행사하지 않음 = 자동 commit
+			 -->
+			<transactionManager type="JDBC"/>
+			
+			<!-- 
+				실제 DB접속에 관한 정보 
+					type : ConnectionPool을 사용할 건지에 대한 여부 설정
+							unpooled : DB요청이 올 때마다 실시간으로 커넥션 객체를 open하고 close
+									   미리 객체를 만들어놓는 방식이 아니므로 느릴 수 있음
+							pooled 	 : 사용자의 요청이 있을 때 DB에 명령을 실행하고 명령이 종료 되어도 연결 종료되지 않고
+									   pool에 저장하여 요청이 올 때마다 pool에서 커넥션은 꺼내 사용
+									   커넥션 객체들을 미리 만들어 놓고 관리해서 객체를 만드는 시간을 줄일 수 있음 
+									   (Web Application에서는 커넥션 풀을 사용하는 것이 좋음)
+			-->
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+				<property name="username" value="SCOTT"/>
+				<property name="password" value="SCOTT"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<!-- mybatis에 mapper를 등록 -->
+		<mapper resource="/mappers/employee-mapper.xml"/>
+		<mapper resource="/mappers/board-mapper.xml"/>
+	</mappers>
+	
+	
+</configuration>
