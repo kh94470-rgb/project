@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>정규표현식</h1>
+    <h2>정규표현식 객체 생성</h2>
+    <button onclick="regExp();">실행확인</button>
+    <script>
+        const regExp = () => {
+            // 1. new 사용
+            const regExp1 = new RegExp('script');
+            const regExp2 = new RegExp(/script/);
+            // 2. 스크립트 사용
+            const regExp3 = /script/;
+            //const regExp4 = 'script'; // x
+
+            // 정규표현식 객체 메소드 : test, exec 다시보기
+            const str = 'javascript jquery ajax'; //  regExp3.test(str) : 정규값 안에 str이 포함 하느냐
+            console.log('regExp3.test(str) : ' + regExp3.test(str));
+            console.log('regExp3.exec(str) : ' + regExp3.exec(str));
+            console.log(regExp3.exec(str));
+
+            //문자열 객체 메소드
+            console.log(str.match(regExp3));
+            console.log(str.replace(regExp3, '스크립트'));
+            console.log(str.search(regExp3));
+            console.log(str.split(regExp3));
+        }
+    </script>
+
+    <h2>$&, $`, $'</h2>
+    <button onclick="matching();">실행확인</button>
+    <script>
+        const matching = () => {
+            const regExp = /as/;
+            const str = "javascript jquery ajax sass";
+
+            // console.log('$& : ' + str.replace(regExp, '($&)')); // $& : 제일 처음 일치하는 문자열
+            console.log(`$& : ${str.replace(regExp, '($&)')}`);
+            // console.log('$` : ' + str.replace(regExp, '($`)')); // $` : 선택한 문자열 앞에 있는 문자열 의미
+            console.log(`$\` : ${str.replace(regExp, '($`)')}`);
+            // console.log("$' : " + str.replace(regExp, "($')")); // $' : 선택한 문자열 뒤에 있는 문자열 의미
+            console.log(`$' : ${str.replace(regExp, "($')")}'`);
+        }
+    </script>
+
+    <h2>()소괄호와 |</h2>
+    <button onclick="manyOr();">실행확인</button>
+    <script>
+        const manyOr = () => {
+            const src = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
+            // const regExp = /(금요일|토요일|일요일)/; // | : 또는 의미
+            const regExp = /(금|토|일)요일/;
+            for(const i of src){
+                // console.log(i + ' : ' + regExp.test(i));
+                console.log(`${i} : ${regExp.test(i)}`);
+            }
+        }
+    </script>
+    <h2>플래그 문자</h2>
+    <p>
+        g : 전역 비교 수행<br/>
+        i : 대소문자를 가리지 않고 비교
+    </p>
+    <button onclick="flag();">실행확인</button>
+    <script> //다시쓰기
+        const flag = () => {
+            const str = "JAvaScript JQuery Ajax\nJAvaScript JQuery Ajax";
+            
+            const regExp0 = /a/;
+            // console.log(regExp0 + " : " + str.replace(regExp0, '($&)'));
+            console.log(`$& : ${str.replace(regExp0, '($&)')}`);
+
+            const regExp1 = /a/g;
+            // console.log(regExp1 + " : " + str.replace(regExp1, '($&)'));
+            console.log(`$& : ${str.replace(regExp1, '($&)')}`);
+
+            const regExp2 = /a/i;
+            // console.log(regExp2 + " : " + str.replace(regExp2, '($&)'));
+            
+            const regExp3 = /a/gi; // 대소문자를 가리지 않고 전역 비교로 수행 gi나 ig 상관없음
+            console.log(regExp3 + " : " + str.replace(regExp3, '($&)'));
+        }
+    </script>
+
+    <h2>앵커 문자</h2>
+    <p>문자열의 앞^과 문자열의 뒤$를 구분해주는 정규 표현식 기호</p>
+    <button onclick="anchorsChar();">실행확인</button>
+    <script>
+        const anchorsChar = () => {
+            const str1 = "JavaScript\nJQuery\nAjax"; //앵커 문자가 들어오면 문자열 한 덩어리로 봄
+
+            const regExp1 = /^j/igm; // m : 줄바꿈까지 봄
+            console.log(`${regExp1} : ${str1.replace(regExp1, '($&)')}`);
+            // (J)avaScript\n(J)Query\nAjax
+
+            const str2 = "JavaScript\nDescription\nShellScript\nAjax";
+
+            const regExp2 = /ipt$/gm;
+            console.log(`${regExp2} : ${str2.replace(regExp2, '($&)')}`);
+            //JavaScr(ipt)\nDescription\nShellScr(ipt)\nAjax
+        }
+    </script>
+
+    <h2>수량 문자</h2>
+    <p>
+        a* : a가 0개 이상<br/>
+        a+ : a가 1개 이상<br/>
+        a? : a가 0개 또는 1개
+    </p>
+    <button onclick="quantity1();">실행확인</button>
+    <script>
+        const quantity1 = () => {
+            const src = 'aabc abc bc';
+
+            const regExp1 = /a*b/g; //a가 0개 이상 b로 끝
+            console.log(`${regExp1} : ${src.replace(regExp1, '($&)')}`);
+
+            const regExp2 = /a+b/g;
+            console.log(`${regExp2} : ${src.replace(regExp2, '($&)')}`);
+
+            const regExp3 = /a?b/g;
+            console.log(`${regExp3} : ${src.replace(regExp3, '($&)')}`);
+        }
+    </script>
+
+    <h3>{}를 이용한 수량 표현</h3>
+    <p>
+        a{5} : a가 5개<br/>
+        a{2,5} : a가 2~5개<br/>
+        a{2,} : a가 2개 이상
+    </p>
+    <button onclick="quantity2();">실행확인</button>
+    <script>
+        const quantity2 = () => {
+            const src = 'AA ABA ABBA ABBBA';
+
+            const regExp11 = /AB*A/g; // 앞뒤로 A 사이에 B가 0개 이상
+            console.log(`${regExp11} : ${src.replace(regExp11, '($&)')}`);
+            const regExp12 = /AB{0,}A/g;
+            console.log(`${regExp12} : ${src.replace(regExp12, '($&)')}`);
+
+            // 앞뒤로 A 사이에 B가 1개 이상
+            const regExp21 = /AB+A/g;
+            console.log(`${regExp21} : ${src.replace(regExp21, '($&)')}`);
+            const regExp22 = /AB{1,}A/g;
+            console.log(`${regExp22} : ${src.replace(regExp22, '($&)')}`);
+
+            // 앞뒤로 A 사이에 B가 0개 또는 1개
+            const regExp31 = /AB?A/g;
+            console.log(`${regExp31} : ${src.replace(regExp31, '($&)')}`);
+            const regExp32 = /AB{0,1}A/g;
+            console.log(`${regExp32} : ${src.replace(regExp32, '($&)')}`);
+
+        }
+    </script>
+
+    <h2>메타문자와 []대괄호</h2>
+    <p>
+        각각의 메타문자는 특별한 의미의 문자열 양식을 나타내고 괄호 묶음 안의 내용은 문자의 범위를 나타냄<br/>
+        대괄호 안의^은 시작이 아니라 특정 문자열 제외를 뜻함
+    </p>
+    <button onclick="meta1();">실행확인</button>
+    <script>
+        const meta1 = () => {
+            const str1 = 'JavaScript JQuery Ajax';
+            const regExp1 = /[aj]/ig;
+            console.log(`${regExp1} : ${str1.replace(regExp1, '($&)')}`);
+            const regExp2 = /[^aj]/ig; 
+            console.log(`${regExp2} : ${str1.replace(regExp2, '($&)')}`);
+
+            const str2 = "123Java,Script";
+            const regExp3 = /[a-z]/g;
+            console.log(`${regExp3} : ${str2.replace(regExp3, '($&)')}`);
+            const regExp4 = /[A-Z]/g;
+            console.log(`${regExp4} : ${str2.replace(regExp4, '($&)')}`);
+            const regExp5 = /[0-9]/g;
+            console.log(`${regExp5} : ${str2.replace(regExp5, '($&)')}`);
+            const regExp6 = /[a-z0-9]/g; //,가 들가면 ,도 체크됨
+            console.log(`${regExp6} : ${str2.replace(regExp6, '($&)')}`);
+        }
+    </script>
+
+    <h3>추가 메타 문자</h3>
+    <p>
+        \d : 숫자<br/>
+        \w : 영어,숫자, _(언더스코어)<br/>
+        \s : 공백문자(띄어쓰기, 탭, 줄바꿈)<br/>
+        \D : 숫자만 빼고 다<br/>
+        \W : 영어, 숫자, _빼고 다<br/>
+        \S : 공백문자 빼고 다
+    </p>
+    <button onclick="meta2();">실행확인</button>
+    <script>
+        const meta2 = () =>{
+            const src = "A1 B2 c3 d_4 e:5` ffGG77--__-- 가\n나\n다";
+            
+            const regExp1 = /\d/g;
+            console.log(`${regExp1} : ${src.replace(regExp1, '($&)')}`);
+            const regExp2 = /[0-9]/g
+            console.log(`${regExp2} : ${src.replace(regExp2, '($&)')}`);
+            
+            const regExp3 = /\w/g;
+            console.log(`${regExp3} : ${src.replace(regExp3, '($&)')}`);
+            const regExp4 = /[a-zA-Z0-9_]/g;
+            console.log(`${regExp4} : ${src.replace(regExp4, '($&)')}`);
+            
+            const regExp5 = /\s/g;
+            console.log(`${regExp5} : ${src.replace(regExp5, '($&)')}`);
+            const regExp6 = /[ \n\t]/g; // \t : tab
+            console.log(`${regExp6} : ${src.replace(regExp6, '($&)')}`);
+            
+            const regExp7 = /\D/g;
+            console.log(`${regExp7} : ${src.replace(regExp7, '($&)')}`);
+            const regExp8 = /[^0-9]/g;
+            console.log(`${regExp8} : ${src.replace(regExp8, '($&)')}`);
+            
+            const regExp9 = /\W/g;
+            console.log(`${regExp9} : ${src.replace(regExp9, '($&)')}`);
+            
+            const regExp10 = /[^a-zA-Z0-9_]/g;
+            console.log(`${regExp10} : ${src.replace(regExp10, '($&)')}`);
+            
+            const regExp11 = /\S/g;
+            console.log(`${regExp11} : ${src.replace(regExp11, '($&)')}`);
+            
+            const regExp12 = /[^ \n\t]/g;
+            console.log(`${regExp12} : ${src.replace(regExp12, '($&)')}`);
+        }
+    </script>
+
+    <h2>Escaping</h2>
+    <button onclick="escape();">실행확인</button>
+    <script>
+        const escape = () => {
+            const src = '$12$ \\-\\ $25$'; // \\ : 역슬래쉬
+            
+            const regExp1 = /$/g;
+            console.log(`${regExp1} : ${src.replace(regExp1, '($&)')}`); 
+            // $12$ \\-\\ $25$()
+            
+            const regExp2 = /\$/g; // \$ : 앵커 문자가 아닌 문자 $다
+            console.log(`${regExp2} : ${src.replace(regExp2, '($&)')}`); // ($)12($) \-\ ($)25($)
+            
+            const regExp3 = /\$$/g;
+            console.log(`${regExp3} : ${src.replace(regExp3, '($&)')}`); // $12$ \-\ $25($)
+            
+            const regExp4 = /\\/g;
+            console.log(`${regExp4} : ${src.replace(regExp4, '($&)')}`); // $12$ (\)-(\) $25$
+        }
+    </script>
+
+    <h2>포인트 .</h2>
+    <button onclick="point();">실행확인</button>
+    <script>
+        const point = () => {
+            const regExp1 = /a.b/; // . : 한 글자
+            console.log(`${regExp1} : ab => ${regExp1.test('ab')}`);
+            console.log(`${regExp1} : a아b => ${regExp1.test('a아b')}`);
+            console.log(`${regExp1} : a아싸b => ${regExp1.test('a아싸b')}`);
+            
+            const regExp2 = /xy./;
+            console.log(`${regExp2} : xyz => ${regExp2.test('xyz')}`);      // true
+            console.log(`${regExp2} : wxy => ${regExp2.test('wxy ')}`);     // true 공백도 한 글자 취급
+            console.log(`${regExp2} : xy야호 => ${regExp2.test('xy야호')}`); // true xy붙으면 됨 뒤에 한 글자 이상 가능
+
+            const regExp3 = /in.$/;
+            console.log(`${regExp3} : going => ${regExp3.test('going')}`); //true
+            console.log(`${regExp3} : inner => ${regExp3.test('inner')}`); //false
+        }
+    </script>
+
+    <h2>예제</h2>
+    <h3>주민등록번호</h3>
+    <p>주민등록번호 유효성 체크 : 생년생월생일-성별숫자6</p>
+    <input type="text" id="ssn" /><button onclick="validate();">실행확인</button>
+    <script>
+        const validate = () => {
+            const regExp = /^\d{2}(0[1-9]|1[0-2]) (0[1-9]|1[0-9]|2[0-9]|3[0-1]0)-[1-4]\d{6}$/;
+            consle.log
+            /*
+                생년 : 
+                생월 
+                생일 135781012 46911 2 1~31 1~30 1~28
+                -
+                성별  13 24
+                숫자
+            */
+            const pno = document.getElementById('ssn').value;
+            if(regExp.test(pno)){
+                alert('정상 입력!');
+            } else{
+                alert('잘못 입력!');
+            }
+        }
+    </script>
+</body>
+</html>

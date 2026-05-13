@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <h1>함수(Function)</h1>
+    <h2>함수 선언</h2>
+    <h3>선언적 함수</h3>
+    <p>함수 명을 작성하여 사용하는 방법</p>
+    <button onclick="declare();">실행확인</button>
+    <script>
+        function declare(){
+            alert('선언적 함수 실행');
+        }
+    </script>
+    <h3>익명 함수</h3>
+    <p>함수 명을 작성하지 않고 변수에 대입하는 방법</p>
+    <button onclick="anonymity();">실행확인</button>
+    <script>
+        // var anonymity = function(){
+        //     alert('익명 함수 실행1');
+        // }
+        const anonymity = () => {
+            alert('익명 함수 실행2');
+        }
+    </script>
+
+    <h2>함수 전달인자와 매개변수</h2>
+    <h3>매개인자로 전달하기</h3>
+    <button id="checkArgument1">실행확인</button>
+    <button id="checkArgument2">실행확인</button>
+    <script>
+        // 포인트1. button에서 사용했던 onclick은 버튼에서의 "속성"임 -> 요소.onclick (속성은 .?로 접근 가능)
+        // 포인트2. 자바스크립트에서는 함수를 변수나 속성에 바로 삽입 가능 
+        //         (window.onload = function(){} / window.onload = () => ())
+
+        // id가 checkArgument1인 요소 클릭 했을 때 함수 삽입 : function / arrow function
+            // document.getElementById('checkArgument1').onclick = function(){
+            document.getElementById('checkArgument1').onclick = () => {
+                test1('안녕');
+                test1(); // var value;
+                test1('반갑습니다', '건강하세요');
+            }
+            
+            function test1(value){
+                console.log(value);
+                console.log(arguments); // function함수에 숨겨져 있는 배열(arguments) : 넘겨받은 모든 데이터 저장
+            }
+
+            document.getElementById('checkArgument2').onclick = function(){
+                test2(prompt('메세지를 입력하세요'));
+                test2();
+                test2('보라색', '하얀색', '노란색', '빨간색');
+            }
+
+            const test2 = (value, ...others) => {
+                console.log(value);
+                // console.log(arguments); // 화살표함수는 arguments가 없음, 나머지 데이터 가져오려면 전개 연산자 써야됨
+                console.log(others);
+            }
+    </script>
+
+    <h3>매개인자로 스스로를 전달하기</h3>
+    <button onclick="sendOther('JavaScript');">JavaScript</button>
+    <button onclick="sendOther('jQuery');">jQuery</button>
+    <script>
+        const sendOther = (subject) => {
+            // JavaScript 버튼을 누르면 "오늘 배울 내용은 JavaScript입니다" 알림창
+            // jQuery 버튼을 누르면 "오늘 배울 내용은 jQuery입니다" 알림창
+            alert('오늘 배울 내용은 ' + subject + '입니다');
+        }
+    </script>
+
+    <button onclick="sendMe(this);">JavaScript</button> <!--this를 전달하면 태그 전체를 전달함-->
+    <button onclick="sendMe(this);">jQuery</button>
+    <script>
+        const sendMe = (obj) => {
+            console.log(obj);
+            // const subject = obj.innerHTML; 
+            const subject = obj.innerText;
+            //obj.innerHTML = '<b>하이</b>'; innerHTML은 태그까지 갖고 옴 ex) <b>
+            // obj.innerText = '<b>하이</b>'; innerText는 문장 그대로 갖고 옴
+
+            alert('오늘 배울 내용은 ' + subject + '입니다');
+        }
+    </script>
+
+    <h3>함수의 리턴처리</h3>
+    <button onclick="returnValue();">실행확인</button>
+    <script>
+        // const returnValue = () => {
+        //     const value = returnFunction();
+        //     console.log(value);
+        // }
+         const returnValue = () => console.log(returnFunction());
+        
+
+        // const returnFunction = () => {
+        //     return Math.floor(Math.random() * 100) + 1;
+        // }
+        const returnFunction = () => Math.floor(Math.random() * 100) + 1;
+        
+    </script>
+
+    <h3>infinity와 NaN</h3>
+    <p>
+        대부분의 프로그래밍 언어는 0으로 숫자를 나누면 자동으로 오류가 발생하면서 프로그램이 종료되지만,<br/>
+        자바스크립트는 0으로 숫자를 나누면 infinity라는 값이 들어가게 되고, 자바스크립트가 표현할 수 없는 숫자는 NaN(Not a Number)로 표시
+    </p>
+    <button onclick="aboutNumFunc();">실행확인</button>
+    <script>
+        const aboutNumFunc = () => {
+            const num1 = 10 / 0;
+            const num2 = 10 / 'a';
+
+            console.log(num1, typeof num1);
+            console.log(num2, typeof num2);
+
+            console.log(isFinite(num1));
+            console.log(num1 == Infinity);
+            console.log(isNaN(num2));
+
+            const num3 = -10 / 0;
+            console.log(num3, typeof num3);
+            console.log(isFinite(num3));
+            console.log(num3 == -Infinity);
+        }
+    </script>
+</body>
+</html>

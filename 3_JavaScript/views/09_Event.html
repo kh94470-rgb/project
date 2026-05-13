@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <h1>이벤트</h1>
+    <h2>이벤트 설정 방법</h2>
+    <h3>고전 이벤트 모델</h3>
+    <button id="classic1">classic1 실행확인</button>
+    <button id="classic2">classic2 실행확인</button>
+    <button id="classic3">classic3 실행확인</button>
+    <script>
+        // id가 classic1인 버튼을 클릭하면 콘솔에 "clasic1이 실행되었습니다" 출력
+        const classic1 = document.getElementById('classic1') 
+        classic1.onclick = () => {
+            console.log('classic1이 실행되었습니다');
+        }
+
+        //id가 classic2인 버튼을 클릭하면 알람창으로 "classic2가 실행되면서 classic1 이벤트를 제거하였습니다." 출력
+        //동시에 classic1에 있던 클릭 이벤트 제거
+        const classic2 = document.getElementById('classic2');
+        classic2.onclick = () => {
+            alert('classic2가 실행되면서 classic1 이벤트를 제거하였습니다.');
+            classic1.onclick = null; //이벤트 제거
+        }
+
+        const func = () => {
+            alert('이름으로 연결');
+        }
+        const classic3 = document.getElementById('classic3');
+        classic3.onclick = func;
+        classic3.onmouseover = () => {
+            console.log('하나의 요소에 다양한 이벤트를 동시에 구현 가능');
+        }
+
+        classic1.onclick = () => {
+            alert('같은 요소, 같은 이벤트에 여러 함수 연결은 가능할까?'); // 불가능, 마지막에 써진 것으로 덮어씌워짐
+        }
+    </script>
+
+    <h3>인라인 모델</h3>
+    <button onclick="inline();">inline 실행확인</button>
+    <button onclick="alert('inline() 함수가 실행되었습니다!')">inline 실행확인</button>
+    <script>
+        const inline = () => alert('inline() 함수가 실행되었습니다');
+    </script>
+    <h3>표준 이벤트 모델</h3>
+    <button id="standard1">standard1 실행확인</button>
+    <button id="standard2">standard2 실행확인</button>
+    <script>
+        const standard1 = document.getElementById('standard1');
+        const standard2 = document.getElementById('standard2');
+
+        //addEventListener(이벤트, 함수)
+        standard1.addEventListener('click', () => {
+            alert('standard1을 클릭했습니다.');
+        });
+
+        const fnInner = () => {
+            console.log('standard1에 들어왔습니다.');
+        }
+        standard1.addEventListener('mouseover', fnInner);
+
+        const fnMany = () => {
+            console.log('같은 요소, 같은 이벤트에 여러 함수 연결이 가능할까?');
+        }
+        standard1.addEventListener('click', fnMany); // 가능함
+
+        standard2.addEventListener('dblclick', () => {
+            standard1.removeEventListener('click', fnMany);
+            alert('standard2가 실행되면서 standard1의 클릭 이벤트 중 하나 제거');
+        })
+    </script>
+
+    <h4>이벤트 객체</h4>
+    <button id="reverse">reverse 확인</button>
+    <script>
+        // reverse버튼을 누르면 버튼의 배경은 까맣게, 글자는 하얗게 변경
+        // 그 버튼을 한 번 더 누르면 버튼의 배경은 원래대로, 글자는 검게 변경
+        // 또 그 버튼을 한 번 더 누르면 버튼의 배경은 까맣게, 글자는 하얗게 변경 (반복)
+        const reverse = document.getElementById('reverse');
+        const origin = document.getElementById('reverse');
+        /*count 버전 : 고전 이벤트 모델 + 화살표 함수*/
+        // let count = 0;
+        // reverse.onclick = () => {
+        //     count++; // 1-b, 2-o, 3-b...
+        //     if(count % 2 != 0){
+        //         reverse.style.backgroundColor = 'black';
+        //         reverse.style.color = 'white';
+        //     } else{
+        //         reverse.style.backgroundColor = null;
+        //         reverse.style.color = null;
+        //     }
+        // }
+
+        /* style버전 : 표준 이벤트 모델 + function 함수*/
+        // reverse.addEventListener('click', function(){
+        //     console.log(this.style.background);
+        //     if(this.style.backgroundColor == 'black'){
+        //         this.style.background = null;
+        //         this.style.color = null;
+        //     } else{
+        //         this.style.backgroundColor = 'black';
+        //         this.style.color = 'white';
+        //     }
+        // });
+
+        /* boolean 버전 : 표준 이벤트 모델 + 화살표 함수*/
+        let check = true;
+        reverse.addEventListener('click', (e) => {
+            console.log(e); //이벤트 발생 시 이벤트 객체 생성
+            console.log(e.target);
+            const target = e.target;
+            if(check){
+                target.style.background = 'black';
+                target.style.color = 'white';
+                check = false;
+            } else{
+                target.style.background = null;
+                target.style.color = null;
+                check = true;
+            }
+        });
+    </script>
+
+    <h2>기본 이벤트 제거</h2>
+    <!-- <form> -->
+    <form onsubmit="return delEvent();">
+        <label>이름 : </label><input type="text" name="name" id="name"/><br/>
+        <label>아이디 : </label><input type="text" name="userId" id="userId"/><br/>
+        <label>비밀번호 : </label><input type="password" name="password" id="password"/><br/>
+        <label>비밀번호 확인 : </label><input type="password" name="passwordConfirm" id="passwordConfirm"/><br/>
+        <!-- <input type="submit" value="제출" onclick="return delEvent();"/> 다시 보기 -->
+         <input type="submit" value="제출"/>
+    </form>
+    <script>
+        const delEvent = () => {
+            // 비밀번호의 값과 비밀번호 확인의 값이 같으면 "비밀번호가 일치합니다" 알림창이 뜨며 제출
+            // 같지 않으면 "비밀번호가 다릅니다" 알림창이 뜨며 제출x
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('passwordConfirm').value;
+            
+            if(password == passwordConfirm){
+                alert('비밀번호가 일치합니다');
+                return true;
+            } else{
+                alert('비밀번호가 다릅니다');
+                document.getElementById('passwordConfirm').select(); //select : 선택
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{border: 1px solid black; min-height: 100px;}
+    </style>
+</head>
+<body>
+    <h1>DOM(Document Object Model)</h1>
+    <h2>Node 객체</h2>
+    <h3>텍스트노드가 있는 노드 생성</h3>
+    <button onclick="textNode();">실행확인</button>
+    <div id="textNodeDiv" class="area"></div>
+    <script>
+        const textNode = () => {
+            const title = document.createElement('h3');// element 생성 <h3></h3>
+            const textNode = document.createTextNode('안녕');//textnode 생성 : "안녕"
+
+            // 속성 설정 가능
+            title.style.color = 'green';
+            title.align = 'center';
+
+            title.appendChild(textNode); // <h3>안녕<h3/>
+            document.getElementById('textNodeDiv').appendChild(title);
+        }
+    </script>
+    <h3>텍스트노드가 없는 노드 생성</h3>
+    <button onclick="noTextNode();">실행확인</button>
+    <div id="noTextNodeDiv" class="area"></div>
+    <script>
+        const noTextNode = () => {
+            const imgTest = document.createElement('img'); // <img/>
+            
+            imgTest.src = 'https://cdn-1.webcatalog.io/catalog/woofz/woofz-icon-filled-256.png?v=1765771874415';
+            imgTest.width='150';
+            imgTest.height='100';
+            imgTest.myProperty='123'; //없는 속성은 원래 무시
+            imgTest.setAttribute('myProperty', '999'); //강제로 없는 속성 넣을 수는 있지만 효과는 없고 표시 같은 걸로 나타남
+
+            document.getElementById('noTextNodeDiv').appendChild(imgTest);
+        }
+    </script>
+
+    <h2>노드 삭제</h2>
+    <button onclick="deleteNode();">실행확인</button>
+    <div id="delDiv" class="area"></div>
+    <script>
+        const deleteNode = () => document.getElementById('delDiv').remove();
+        
+    </script>
+</body>
+</html>

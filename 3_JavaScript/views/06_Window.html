@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{border: 1px solid black; width: 300px; height: 100px; font-size: 40px; color: red;}
+    </style>
+</head>
+<body>
+    <h1>window객체</h1>
+    <p>
+        window객체는 자바스크립트의 최상위 객체이면 BOM과 DOM으로 나뉨<br/>
+        BOM(Browser Object Model) : location객체, navigator객체, history객체, screen객체<br/>
+        DOM(Document Object Model) : document객체
+    </p>
+
+    <h2>window객체</h2>
+    <button id="test1">실행1</button>
+    <button id="test2">실행2</button>
+    <script>
+        //실행1 버튼에 클릭 이벤트 삽입
+        document.getElementById('test1').onclick = () => {
+            console.log(window);
+            console.log(this); //화살표 함수 this는 window객체
+
+            //window.open();
+            // window.open('01_JavaScript.html');
+            // window.open('https://www.naver.com');
+            window.open('https://www.naver.com', '네이버', 'width=500, height=300')
+        }
+
+        document.getElementById('test2').onclick = function(){
+            console.log(window);
+            console.log(this); // function 함수 this는 안에 있는 객체
+
+            const popup = window.open("","_self");
+            popup.document.write('<html><body><h2>팝업이지롱~!</h2></body></html>');
+        }
+    </script>
+
+    <h3>window객체의 timer메소드</h3>
+    <h4>setTimeout()</h4>
+    <button onclick="setTimeoutTest();">실행확인</button>
+    <script>
+        const setTimeoutTest = () => {
+            const myWindow = window.open("", "", "width=500, height=300");
+            myWindow.alert('3초 후에 이 페이지는 종료됩니다.');
+
+            // window.setTimeout(() => {
+            //     myWindow.close();
+            // }, 3000); //3000 = 3초
+            window.setTimeout(() => myWindow.close(), 3000); //3000 = 3초
+        }
+    </script>
+
+    <h4>setInterval()</h4>
+    <button onclick="setIntervalTest();">실행확인</button>
+    <div id="intervalDiv" class="area"></div>
+    <script>
+        const setIntervalTest = () => {
+            const area = document.getElementById('intervalDiv');
+
+            window.setInterval(() => {
+                const date = new Date();
+                area.innerHTML = date.getHours() + " : " + date.getMinutes()
+                                     + " : " + date.getSeconds() + " : " +date.getMilliseconds();
+            }, 1000); // 1000 = 1초 / 10 = 0.01초
+        }
+    </script>
+
+    <h4>clearInterval()</h4>
+    <button onclick="count3();">실행확인</button>
+    <div id="countDiv" class="area"></div>
+    <script>
+        const count3 = () => {
+            const area = document.getElementById('countDiv');
+
+            let count = 3;
+            // div에 3초 카운트 다운 하는 코드 작성
+            // 3, 2, 1 한 후에 "종료!"가 뜨고 카운트 다운 종료 시키기
+            
+            const intervalId = window.setInterval(() => {
+                area.innerHTML = 'countdown : ' + count--;
+                if(count < 0){
+                    area.innerHTML += '종료!';
+                    clearInterval(intervalId);
+                } 
+            }, 1000);
+
+        }
+    </script>
+</body>
+</html>
