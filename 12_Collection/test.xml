@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>20260212, XML File Test</comment>
+<entry key="author">Mr. HONG</entry>
+<entry key="price">15000</entry>
+<entry key="publisher">KH Academy</entry>
+<entry key="title">Properties Practice</entry>
+</properties>
